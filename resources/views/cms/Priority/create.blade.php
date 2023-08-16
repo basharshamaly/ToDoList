@@ -21,9 +21,23 @@
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-
-
-          @include('cms.form_store')
+          <form method="POST" action="{{ route('priorities.store') }}">
+            @csrf
+            <div class="card-body">
+        
+                <div class="form-group">
+                    <label for="name">name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="name">
+                  </div>
+           
+        
+            </div>
+            <!-- /.card-body -->
+        
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Store</button>
+            </div>
+          </form>
         </div>
         
 
