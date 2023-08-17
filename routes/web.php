@@ -31,7 +31,8 @@ Route::prefix('/ToDoList')->middleware('auth:web')->group(function () {
     Route::resource('/droplists', DropListController::class);
     Route::resource('/priorities', PriorityController::class);
     Route::resource('/tasks', TaskController::class);
-    // Route::post('/stor_user/{usertype}/', [TaskController::class, 'store']);
+    Route::post('/stor_user/{usertype}/', [DropListController::class, 'store'])->name('droplistis.stores');
+    // Route::post('/stor', [DropListController::class, 'store'])->name('droplists.store');
 
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('cms.logout');

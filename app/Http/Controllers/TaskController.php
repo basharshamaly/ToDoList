@@ -45,20 +45,19 @@ class TaskController extends Controller
 
 
         // if ($request->input('user') === 'new') {
-        $tasks = new Task();
-        $tasks->name = $request->input('name');
-        $tasks->priority_id = $request->input('priority_id');
-        $tasks->drop_list_id = $request->input('drop_list_id');
-        $tasks->Due_Date = $request->input('due_date');
-        $tasks->IsCompleted = $request->input('iscompleted') === 'true' ? true : false;
-        $save = $tasks->save();
-        return redirect(route('tasks.index'));
-
+            $tasks = new Task();
+            $tasks->name = $request->input('name_1');
+            $tasks->priority_id = $request->input('priority_id');
+            $tasks->drop_list_id = $request->input('drop_list_id');
+            $tasks->Due_Date = $request->input('due_date');
+            $tasks->IsCompleted = $request->input('iscompleted') === 'true' ? true : false;
+            $save = $tasks->save();
+            return redirect(route('tasks.index'));
         // } else {
-        // return response()->json([
-        //     'icon' => 'error',
-        //     'title' => 'Invalid user type',
-        // ], 400);
+        //     return response()->json([
+        //         'icon' => 'error',
+        //         'title' => 'Invalid user type',
+        //     ], 400);
         // }
     }
 

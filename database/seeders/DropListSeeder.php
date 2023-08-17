@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DropList;
 use Illuminate\Database\Seeder;
 
 class DropListSeeder extends Seeder
@@ -13,6 +14,10 @@ class DropListSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DropList::create([
+            'name' => "time game",
+          
+
+        ]); 
     }
 }

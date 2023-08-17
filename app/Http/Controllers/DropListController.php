@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DropListRequest;
 use App\Models\DropList;
+use App\Models\Priority;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class DropListController extends Controller
@@ -16,8 +18,9 @@ class DropListController extends Controller
     public function index()
     {
         $droplists = DropList::orderBy('id', 'desc')->paginate(10);
+        $tasks = Task::where('id')->get();
 
-        return response()->view('cms.DropList.index', compact('droplists'));
+        return response()->view('cms.DropList.index', compact('droplists', 'tasks'));
     }
 
     /**
@@ -28,7 +31,9 @@ class DropListController extends Controller
     public function create()
     {
         $droplists = DropList::all();
-        return response()->view('cms.DropList.create');
+        $priorities = Priority::all();
+
+        return response()->view('cms.DropList.create', compact('priorities', 'droplists'));
     }
 
     /**
@@ -37,13 +42,27 @@ class DropListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DropListRequest $request)
+    public function store($usertype, DropListRequest $request)
     {
+        // if ($request->input('user') === 'lists') {
         $droplists = new DropList();
         $droplists->name = $request->input('name');
-
         $save =  $droplists->save();
-        return redirect(route('droplists.index'));
+        // } else if ($request->input('user') === 'task') {
+        $tasks = new Task();
+        $tasks->name = $request->input('name_1');
+        $tasks->priority_id = $request->input('priority_id');
+        $tasks->drop_list_id = $request->input('drop_list_id');
+        $tasks->Due_Date = $request->input('due_date');
+        $tasks->IsCompleted = $request->input('iscompleted') === 'true' ? true : false;
+        $save = $tasks->save();
+        // } else {
+        //     return response()->json([
+        //         'icon'=>'error',
+        //         'message'=>'failed process',
+        //     ],400);
+        // }
+
     }
 
     /**

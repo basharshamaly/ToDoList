@@ -42,6 +42,7 @@
                   <tr>
                     <th>ID</th>
                       <th>name</th>
+                  
                     <th>created_at</th>
                     <th>Action</th>
                   </tr>
@@ -54,11 +55,12 @@
                     <td>{{ $loop->index+1 }}</td>
                     <td>{{$droplist->name ?? " "}} </td>
                
+{{-- 
+                    @foreach ($tasks as $task )
 
-
-                    
-
-
+                    <td>{{$task->id}} </td>
+                    @endforeach --}}
+               
                     <td>{{$droplist->created_at}}</td>
                     <td style="display:flex; gap:15px;">
                 

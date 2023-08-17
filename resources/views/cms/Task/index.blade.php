@@ -46,6 +46,7 @@
                       <th>drop_list_name</th>
                       <th>Due_Date</th>
                       <th>IsCompleted</th>
+                      <th>drop_list_id</th>
                     <th>created_at</th>
                     <th>Action</th>
                   </tr>
@@ -61,6 +62,7 @@
                     <td>{{$task->drop_lists->name ?? " "}}</td>
                     <td>{{$task->Due_Date}} </td>
                     <td>{{$task->IsCompleted ?? " "}}</td>
+                    <td>{{$task->drop_lists->id ?? " "}}</td>
                     <td>{{$task->created_at}}</td>
                     <td style="display:flex; gap:15px;">
                 
