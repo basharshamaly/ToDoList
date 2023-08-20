@@ -44,18 +44,25 @@ class DropListController extends Controller
      */
     public function store($usertype, DropListRequest $request)
     {
-        // if ($request->input('user') === 'lists') {
+        // dd($request->all());
+
         $droplists = new DropList();
         $droplists->name = $request->input('name');
+
         $save =  $droplists->save();
-        // } else if ($request->input('user') === 'task') {
-        $tasks = new Task();
-        $tasks->name = $request->input('name_1');
-        $tasks->priority_id = $request->input('priority_id');
-        $tasks->drop_list_id = $request->input('drop_list_id');
-        $tasks->Due_Date = $request->input('due_date');
-        $tasks->IsCompleted = $request->input('iscompleted') === 'true' ? true : false;
-        $save = $tasks->save();
+
+        for ($i = 0; $i < count($request->input('name_1')); $i++) {
+            $tasks = new Task();
+            $tasks->name = $request->input('name_1')[$i];
+            $tasks->priority_id = $request->input('priority_id')[$i];
+            // $tasks->drop_list_id = $droplists->id;
+            $tasks->drop_list_id = $droplists->id;
+
+            $tasks->Due_Date = $request->input('due_date')[$i];
+            $tasks->IsCompleted = $request->input('iscompleted')[$i] === 'true' ? true : false;
+
+            $save = $tasks->save();
+        }
         // } else {
         //     return response()->json([
         //         'icon'=>'error',

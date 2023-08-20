@@ -25,7 +25,13 @@ class DropListRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'name_1' => 'required|string'
+            'name_1' => 'required|array',
+            'name_1.*' => 'required|string',
+            'due_date' => 'array|required',
+            'due_date.*' => 'date|required',
+            'IsCompleted' => 'array',
+            'priority_id' => 'array',
+            'drop_list_id' => 'array',
         ];
     }
 }
